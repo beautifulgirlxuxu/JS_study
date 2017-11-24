@@ -1,0 +1,6 @@
+'use strict';
+
+var a = 'abc';
+console.log(a);
+var owner = '徐燕青';
+console.log(owner);
