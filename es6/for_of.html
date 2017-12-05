@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for of</title>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <script>
+        const myArr = [1,2,3];
+        for(let index = 0, len=myArr.length; index < len; index++) {
+            // console.log(myArr[index]);
+            // break;continue;
+            // if(index == 1) break;
+            if(index ==1) continue;
+            // console.log(myArr[index]);
+        }
+        //map 遍历 优点：简洁（不需要数组下标）
+        myArr.forEach(function(value) {
+            // 缺点 内部无法break continue
+            // console.log(value);
+        })
+        // 进化循环
+        // for in json 
+        // key 转化成字符串 for in 不适合数组循环
+        // 不care key，顺序 时可以用 
+        // parseInt Number 转化成数字类型
+        // for (var index in myArr) {
+        //     console.log(Number(index) + myArr[index]);
+        // }
+        // es6 提供最强大的便利数据循环
+        // 比forEach优秀，可以停下循环
+        // 简洁 可以跳出循环
+        let i = 0;
+        for(let value of myArr) {
+            if (value == 2) continue;
+            // console.log(i,value);
+            i++;
+        }
+
+        // nodeList 结点列表 类数组
+        const boxes = document.querySelectorAll('.box');
+        boxes.forEach(box => {
+            // console.log(box.innerHTML);
+        })
+
+        for (let box of boxes) {
+            // console.log(box.innerHTML);
+        }
+
+        const singer = 'adele';
+        for (let chr of singer) {
+            // console.log(chr + "");
+        }
+
+        const fenfen = {
+            name: '芬芬',
+            sex: '男'
+        };
+        // const arr = Object.keys(fenfen);
+        // json not iterable 迭代器
+        // for (let item of arr) {
+        //     console.log(item);
+        //     console.log(fenfen[item]);
+        // }
+        // for (let key of Object.keys(fenfen)) {
+        //     console.log(key + ':' + fenfen[key]);
+        // }
+        // 数组重复
+        var singers = ['adele','周杰伦','周杰伦','周杰伦'];
+        // set消除数组中重复的内容
+        var uniqueSingers = new Set(singers);
+        console.log(uniqueSingers);
+        // iterable
+        for (let singer of uniqueSingers) {
+            console.log(singer);
+        }
+
+        // for of 遍历一个不是iterable 的json
+        // for key in 效率不高
+        
+    </script>
+</body>
+</html>
