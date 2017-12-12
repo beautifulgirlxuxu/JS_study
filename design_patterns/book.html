@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图书类 论代码的严谨性</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            overflow: hidden;
+        }
+
+        .inner {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="inner">
+
+        </div>
+    </div>
+    <script>
+        //return  true  false  正则表达式引入， 功能：用于模式匹配内容， 高效验证
+        // 九位， 正数， 
+        //0-9 :一横范围，  [] ：一个字符 ，  {} : 内部放置长度
+        // ^ : 从字符串开始进行匹配， $ :匹配到字符串的结束, 
+        //       /..../ :两个斜杠表示正则表达式
+        // 设计类， 封装粒度， 具有一定得私有属性和方法， 确保类的本身概念完整， 方便调用
+        //私有通过作用域
+        // var Book = function (isbn, title, author) {
+        // this arguments 函数运行时
+        // if (arguments.length == 0) {
+        //     throw new Error('没有指定isbn');
+        // }
+        // isbn 安全？ 校验一下
+        // this.isbn = isbn;
+        //    this.checkIsbn(isbn);
+        // this.title = title;
+        // this.author = author;
+        //     this.setIsbn(isbn);
+        //     this.setTitle(title);
+        //     this.author = [];
+        //     this.setAuthor(author);
+        // }
+
+        var Book = function (newIsbn, newTitle, newAuthor) {
+            // isbn, title, author 私有属性, 局部变量
+            var isbn, title, author=[];
+
+            function checkIsbn(isbn) {
+                return /^[0-9]{9}$/.test(isbn);
+            }
+
+            // this 形成共有，全局
+            this.setIsbn = function (newIsbn) {
+                if (checkIsbn(newIsbn)) {
+                    isbn = newIsbn;
+                } else {
+                    throw new Error('isbn 格式有误');
+                }
+            }
+
+            this.setTitle = function (newTitle) {
+                title = newTitle;
+            }
+
+            this.setAuthor = function (newAuthor) {
+                author.push(newAuthor);
+            }
+
+            this.getAuthor = function () {
+                return author;
+            }
+
+            this.getIsbn = function () {
+                return isbn;
+            }
+
+            this.getTitle = function () {
+                return title;
+            }
+            this.setIsbn(newIsbn);
+            this.setTitle(newTitle);
+            this.setAuthor(newAuthor);
+        }
+   
+            var book = new Book('123123123', '小红书',['fengfeng']);
+            // book.getIsbn();
+
+        // Book.prototype = {
+
+        //     setIsbn: function (isbn) {
+        //         if (this._checkIsbn(isbn)) {
+        //             this.isbn = isbn;
+        //         } else {
+        //             throw new Error("isbn 格式有误");
+        //         }
+        //     },
+        //     //  _ ：下划线使得方法为私有，不可随意访问
+        //     _checkIsbn: function (isbn) {
+        //         return /^[0-9]{9}$/.test(isbn);
+        //     },
+        //     setTitle: function (title) {
+        //         // var a = 1;
+        //         this.title = title || 'No title specified';
+        //         // console.log(a);
+        //     },
+        //     getTitle: function (title) {
+        //         return this.title;
+        //     },
+        //     setAuthor: function　 (author) {
+        //         if (author) {
+        //             this.author.push(author);
+        //         }
+        //     },
+        //     getAuthor: function (author) {
+        //         return this.author.join(',');
+        //     },
+        // }
+
+        var book = new Book('123456789', '红姐传', ['芬芬']);
+         console.log(book.getIsbn()) ;
+        //  封装即隐藏， 写类的人， 用类的人两者时不同人，
+        // 写类的人： 尽量暴露少一些接口，且可控
+        //用类的人： 更简单
+        // checkIsbn 方法 public ,没有必要交给外界理解
+        // console.log(book.checkIsbn('1234523456'));
+        
+    </script>
+</body>
+
+</html>
