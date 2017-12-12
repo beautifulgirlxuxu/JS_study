@@ -1,0 +1,17 @@
+{
+  "name": "bass",
+  "version": "0.1.0",
+  "description": "> Backend as service \r > 弹幕 实时Web系统 野狗 sync",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "miaomiaoXiong <1920459934@qq.com> (https://github.com/AutumnTale666/miaomaioxiong.github.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "jsonlint": "^1.6.2",
+    "mocha": "^4.0.1"
+  }
+}
